@@ -64,10 +64,10 @@ public class Main {
                     //update
                     System.out.println("Enter account Number : ");
                     String number = scanner.nextLine();
-                    System.out.println("Enter new balance: ");
-                    double newBalance = scanner.nextDouble();
+                    System.out.println("Enter new Name: ");
+                    String newName = scanner.nextLine();
 
-                    bank.updateAccount(number, newBalance);
+                    bank.updateAccount(number, newName);
                 }
                 else if (choice == 4) {
                     //delete

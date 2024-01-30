@@ -20,12 +20,15 @@ public class Bank{
         }
     }
 
-    public void updateAccount(String number, double newBalance){
+    public void updateAccount(String number, String newName){
         for(Account account : accounts){
             if(account.getNumber().equals(number)){
-                account.setBalance(newBalance);
+                account.setName(newName);
+                System.out.println("Account Updated Successfully");
+                return;
             }
         }
+        System.out.println("Account not found");
     }
 
     public void deleteAccount(String number){
