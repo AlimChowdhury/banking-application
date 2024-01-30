@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Bank bank = new Bank();
+
 
         while (true) {
             try {
@@ -23,26 +25,65 @@ public class Main {
 
                 if (choice == 1) {
                    //create
+                    System.out.print("Enter account holder's name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter account number: ");
+                    String number = scanner.nextLine();
+                    System.out.print("Enter creation date: ");
+                    String creationDate = scanner.nextLine();
+                    System.out.print("Enter opening balance: ");
+                    double balance = scanner.nextDouble();
+                    scanner.nextLine(); // Consume newline
+                    System.out.print("Enter account type (current/savings/salary): ");
+                    String type = scanner.nextLine();
+                    bank.createAccount(name, number, creationDate, balance, type);
                 }
                 else if (choice == 2) {
                     //display
+                    bank.displayAllAccounts();
                 }
                 else if (choice == 3) {
-                    // update
+                    //update
+                    System.out.println("Enter account Number : ");
+                    String number = scanner.nextLine();
+                    System.out.println("Enter new balance: ");
+                    double newBalance = scanner.nextDouble();
+
+                    bank.updateAccount(number, newBalance);
                 }
                 else if (choice == 4) {
-                    // delete
+                    //delete
+                    System.out.print("Enter account number: ");
+                    String number = scanner.nextLine();
+
+                    bank.deleteAccount(number);
                 }
                 else if (choice == 5) {
-                    // deposit
+                    //deposit
+                    System.out.println("Enter account Number : ");
+                    String number = scanner.nextLine();
+                    System.out.println("Enter amount to deposit: ");
+                    double amount = scanner.nextDouble();
+
+                    bank.deposit(number, amount);
                 }
                 else if (choice == 6) {
-                    //  withdraw
+                    //withdraw
+                    System.out.print("Enter account number: ");
+                    String number = scanner.nextLine();
+                    System.out.print("Enter amount to withdraw: ");
+                    double amount = scanner.nextDouble();
+
+                    bank.withdraw(number, amount);
                 }
                 else if (choice == 7) {
-                    //  search
+                    //search
+                    System.out.print("Enter account number: ");
+                    String number = scanner.nextLine();
+                    bank.searchAccount(number);
                 }
                 else if (choice == 8) {
+                    //exit
                     System.out.println("Exiting...");
                     break;
                 } else {
