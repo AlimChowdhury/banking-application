@@ -59,5 +59,6 @@ public class Account {
         System.out.println("Creation Date: " + creationDate);
         System.out.println("Balance: " + balance);
         System.out.println("Account Type: " + type);
+
     }
 }
