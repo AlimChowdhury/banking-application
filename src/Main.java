@@ -1,6 +1,22 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+
+    private static String generateAccountNumber(){
+        Random random = new Random();
+        StringBuilder accountNumber = new StringBuilder();
+        for(int i=0;i<10;i++){
+            accountNumber.append(random.nextInt(10));
+        }
+        return accountNumber.toString();
+    }
+    private static String generateCreationDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(new Date());
+    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Bank bank = new Bank();
@@ -27,15 +43,17 @@ public class Main {
                    //create
                     System.out.print("Enter account holder's name: ");
                     String name = scanner.nextLine();
-                    System.out.print("Enter account number: ");
-                    String number = scanner.nextLine();
-                    System.out.print("Enter creation date: ");
-                    String creationDate = scanner.nextLine();
+
+                    String number = generateAccountNumber();
+                    String creationDate = generateCreationDate();
+
                     System.out.print("Enter opening balance: ");
                     double balance = scanner.nextDouble();
-                    scanner.nextLine(); // Consume newline
+                    scanner.nextLine();
+
                     System.out.print("Enter account type (current/savings/salary): ");
                     String type = scanner.nextLine();
+
                     bank.createAccount(name, number, creationDate, balance, type);
                 }
                 else if (choice == 2) {

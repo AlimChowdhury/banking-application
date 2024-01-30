@@ -10,6 +10,7 @@ public class Bank{
     public void createAccount(String name, String number, String creationDate, double balance, String type) {
         accounts.add(new Account(name, number, creationDate, balance, type));
         System.out.println("Account created successfully.");
+        System.out.println("Your account Number: " + number );
     }
 
     public void displayAllAccounts() {
