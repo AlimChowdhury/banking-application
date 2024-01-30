@@ -8,9 +8,28 @@ public class Bank{
     }
 
     public void createAccount(String name, String number, String creationDate, double balance, String type) {
+
+        double minimumBalance = getMinBalanceForAccountType(type);
+        if(balance< minimumBalance){
+            System.out.println("Failed to create account. Minimum balance required for " + type + " account is: " + minimumBalance);
+            return;
+        }
+
         accounts.add(new Account(name, number, creationDate, balance, type));
         System.out.println("Account created successfully.");
         System.out.println("Your account Number: " + number );
+    }
+
+    private double getMinBalanceForAccountType(String type) {
+        switch (type){
+            case "current":
+                return 5000;
+            case "savings":
+                return 2500.0;
+            case "salary":
+            default:
+                return 0.0;
+        }
     }
 
     public void displayAllAccounts() {
