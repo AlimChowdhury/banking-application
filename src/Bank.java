@@ -73,18 +73,40 @@ public class Bank{
     }
 
     public void withdraw(String number, double amount) {
+        Account account = findAccountByNumber(number);
+        if (account != null) {
+            double minimumBalance = getMinimumBalanceForAccountType(account.getType());
+            if (account.getBalance() - amount < minimumBalance) {
+                System.out.println("Withdrawal failed. Minimum balance of " + minimumBalance + " must be maintained.");
+            } else {
+                account.setBalance(account.getBalance()-amount);
+                System.out.println("Amount withdrawn successfully.");
+            }
+        } else {
+            System.out.println("Account not found.");
+        }
+    }
+
+    private double getMinimumBalanceForAccountType(String type) {
+
+        switch (type) {
+            case "current":
+                return 1000.0;
+            case "savings":
+                return 500.0;
+            case "salary":
+            default:
+                return 200.0;
+        }
+    }
+
+    private Account findAccountByNumber(String number) {
         for (Account account : accounts) {
             if (account.getNumber().equals(number)) {
-                if (account.getBalance() >  amount) {
-                    account.setBalance(account.getBalance() - amount);
-                    System.out.println("Amount withdrawn successfully.");
-                } else {
-                    System.out.println("Insufficient balance.");
-                }
-                return;
+                return account;
             }
         }
-        System.out.println("Account not found.");
+        return null;
     }
 
     public void searchAccount(String number) {
